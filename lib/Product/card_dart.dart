@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_card/Product/Product.dart';
+import 'package:shopping_card/Product/Item.dart';
 import 'CartProvider.dart';
 
 class CartPage extends StatelessWidget {
@@ -9,14 +9,10 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cart'),
-      ),
+      appBar: AppBar(title: const Text('Cart')),
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          CartListWidget(),
-        ],
+        children: [CartListWidget()],
       ),
     );
   }
@@ -33,27 +29,28 @@ class _CartListWidgetState extends State<CartListWidget> {
   @override
   Widget build(BuildContext context) {
     return Consumer<CartProvider>(
-        builder: (context, cart, child) {
-          return cart.itemList.isNotEmpty
-              ? ListView.separated(
-            padding: const EdgeInsets.all(8),
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index){
-              return CartItem(index: index, item: cart.itemList[index]);
-            },
-            itemCount: cart.itemList.length,
-            separatorBuilder: (BuildContext context, int index) => const Divider(),
-          )
-              : const Center(child: Text('Cart is empty.'));
-        }
+      builder: (context, cart, child) {
+        return cart.itemList.isNotEmpty
+            ? ListView.separated(
+                padding: const EdgeInsets.all(8),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return CartItem(index: index, item: cart.itemList[index]);
+                },
+                itemCount: cart.itemList.length,
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+              )
+            : const Center(child: Text('Cart is empty.'));
+      },
     );
   }
 }
 
 class CartItem extends StatelessWidget {
   final int index;
-  final Product item;
+  final Item item;
 
   const CartItem({super.key, required this.index, required this.item});
 
@@ -64,13 +61,12 @@ class CartItem extends StatelessWidget {
         Text('$item'),
         const Expanded(child: SizedBox()),
         TextButton(
-            onPressed: () {
-              Provider.of<CartProvider>(context, listen: false).remove(item);
-            },
-            child: const Text('Remove')),
+          onPressed: () {
+            Provider.of<CartProvider>(context, listen: false).remove(item);
+          },
+          child: const Text('Remove'),
+        ),
       ],
     );
   }
 }
-
-

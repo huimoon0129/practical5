@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_card/Product/Product.dart';
+import 'package:shopping_card/Product/Item.dart';
 
-import 'Product/CartPage.dart';
+import 'Product/card_dart.dart';
 import 'Product/CartProvider.dart';
 
-final List<Product> catalog = [
-  Product(1, 'Shoes', 30.00, 'shoes.jpg'),
-  Product(2, 'Hats', 20.00, 'hats.jpg' ),
-  Product(3, 'Shirts', 50.00, 'shirts.jpg'),
-  Product(4, 'Tie', 45.00, 'tie.jpg'),
-  Product(5, 'Pants', 56.00, 'pants.jpg'),
+final List<Item> catalog = [
+  Item(1, 'Shoes'),
+  Item(2, 'Hats' ),
+  Item(3, 'Shirts'),
+  Item(4, 'Tie', ),
+  Item(5, 'Pants'),
 ];
 
 
@@ -102,15 +102,12 @@ class CartItem extends StatelessWidget {
     return Row(
       children: [
 
-        Image.asset(
-          'assets/images/${item.image}',
-          width: 60,
-          height: 60,
-          fit: BoxFit.cover,
-        ),
-
-        const Expanded(child: SizedBox()),
-
+        // Image.asset(
+        //   'assets/images/${item.image}',
+        //   width: 60,
+        //   height: 60,
+        //   fit: BoxFit.cover,
+        // ),
         Text('$item'),
 
         const Expanded(child: SizedBox()),

@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
-import 'package:shopping_card/Product/Product.dart';
+import 'package:shopping_card/Product/Item.dart';
 
 class CartProvider extends ChangeNotifier {
-  final List<Product> itemList = [];
+  final List<Item> itemList = [];
 
-  void add(Product product){
+  void add(Item product){
     itemList.add(product);
     notifyListeners();
   }
 
-  void remove(Product product){
+  void remove(Item product){
     itemList.remove(product);
     notifyListeners();
   }
