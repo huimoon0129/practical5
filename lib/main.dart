@@ -6,11 +6,11 @@ import 'Product/card_dart.dart';
 import 'Product/CartProvider.dart';
 
 final List<Item> catalog = [
-  Item(1, 'Shoes'),
-  Item(2, 'Hats' ),
-  Item(3, 'Shirts'),
-  Item(4, 'Tie', ),
-  Item(5, 'Pants'),
+  Item(1, 'Shoes', 79.90, "shoes.jpg"),
+  Item(2, 'Hats', 25.50, "hats.jpg"),
+  Item(3, 'Shirts', 49.90, "shirts.jpg"),
+  Item(4, 'Tie', 38.90, "tie.jpg"),
+  Item(5, 'Pants', 149.90, "pants.jpg"),
 ];
 
 
@@ -102,13 +102,14 @@ class CartItem extends StatelessWidget {
     return Row(
       children: [
 
-        // Image.asset(
-        //   'assets/images/${item.image}',
-        //   width: 60,
-        //   height: 60,
-        //   fit: BoxFit.cover,
-        // ),
-        Text('$item'),
+        Image.asset(
+           'assets/images/${item.itemImage}',
+           width: 60,
+           height: 60,
+           fit: BoxFit.cover,
+        ),
+
+        Text('$item'), //display toString by default
 
         const Expanded(child: SizedBox()),
 
